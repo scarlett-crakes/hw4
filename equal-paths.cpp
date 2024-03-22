@@ -34,7 +34,5 @@ bool equalPaths(Node * root)
       return false;
     }
     return equalPaths(root->left) && equalPaths(root->right);
-
-
 }
 
