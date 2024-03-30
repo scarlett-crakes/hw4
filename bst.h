@@ -202,6 +202,7 @@ public:
     virtual void insert(const std::pair<const Key, Value>& keyValuePair); //TODO
     virtual void remove(const Key& key); //TODO
     void clear(); //TODO
+    void clearHelper(Node<Key, Value>* node);
     bool isBalanced() const; //TODO
     void print() const;
     bool empty() const;
@@ -634,10 +635,21 @@ template<typename Key, typename Value>
 void BinarySearchTree<Key, Value>::clear()
 {
     // TODO
-    while(root_ != NULL)
+    clearHelper(root_);
+    root_ = NULL;
+}
+
+template<typename Key, typename Value>
+void BinarySearchTree<Key, Value>::clearHelper(Node<Key, Value>* node)
+{
+    // TODO
+    if(node == NULL)
     {
-      remove(root_->getKey());
+      return;
     }
+    clearHelper(node->getLeft());
+    clearHelper(node->getRight());
+    delete node;
 }
 
 
